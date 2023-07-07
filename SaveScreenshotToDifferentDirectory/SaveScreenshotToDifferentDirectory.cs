@@ -11,14 +11,14 @@ namespace SaveScreenshotToDifferentDirectory
         internal const string VERSION = "1.0.0";
 
         public override string Name => "SaveScreenshotToDifferentDirectory";
-        public override string Author => "PLYSHKA";
+        public override string Author => "Meister1593";
         public override string Version => VERSION;
         public override string Link => "https://github.com/Meister1593/SaveScreenshotToDifferentDirectory";
 
         public override void OnEngineInit()
         {
             Config = GetConfiguration();
-            new Harmony("net.plyshka.SaveScreenshotToDifferentDirectory").PatchAll();
+            new Harmony("net.meister1593.SaveScreenshotToDifferentDirectory").PatchAll();
         }
 
         private static ModConfiguration Config;

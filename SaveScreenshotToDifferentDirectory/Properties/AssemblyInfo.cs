@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SaveScreenshotToDifferentDirectory")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PLYSHKA labs")]
+[assembly: AssemblyCompany("Meister1593 labs")]
 [assembly: AssemblyProduct("SaveScreenshotToDifferentDirectory")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
