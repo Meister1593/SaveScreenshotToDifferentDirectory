@@ -21,7 +21,8 @@ namespace SaveScreenshotToDifferentDirectory
 
         private static ModConfiguration Config;
 
-        [AutoRegisterConfigKey] public static ModConfigurationKey<string> ScreenshotPath =
+        [AutoRegisterConfigKey]
+        public static ModConfigurationKey<string> ScreenshotPath =
             new("Path to screenshots", "Path to screenshots folder in OS", () => "");
 
         [HarmonyPatch(typeof(SteamScreenshots), nameof(SteamScreenshots.AddVRScreenshotToLibrary))]
@@ -31,12 +32,14 @@ namespace SaveScreenshotToDifferentDirectory
                 string pchFilename,
                 string pchVRFilename)
             {
-                string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss"); 
-                string screenshotPath = $"{Config.GetValue(ScreenshotPath)}/{dateTime}_1.jpg"; // Steam screenshot name format
+                string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+                string screenshotPath =
+                    $"{Config.GetValue(ScreenshotPath)}/{dateTime}_1.jpg"; // Steam screenshot name format
                 if (string.IsNullOrEmpty(Config.GetValue(ScreenshotPath)))
                 {
                     return;
                 }
+
                 Warn(screenshotPath);
                 File.Copy(pchFilename, screenshotPath);
             }
