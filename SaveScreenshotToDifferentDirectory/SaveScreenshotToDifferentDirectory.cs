@@ -8,9 +8,11 @@ namespace SaveScreenshotToDifferentDirectory
 {
     public class SaveScreenshotToDifferentDirectory : NeosMod
     {
+        internal const string VERSION = "1.0.0";
+            
         public override string Name => "SaveScreenshotToDifferentDirectory";
         public override string Author => "PLYSHKA";
-        public override string Version => "1.0.0";
+        public override string Version => VERSION;
         public override string Link => "https://github.com/Meister1593/SaveScreenshotToDifferentDirectory";
 
         public override void OnEngineInit()

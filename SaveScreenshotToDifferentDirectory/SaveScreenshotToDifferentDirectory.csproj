@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <ProjectGuid>{b6ecd8e6-3b78-4976-b636-53e6e2dcf639}</ProjectGuid>
+        <AssemblyTitle>SaveScreenshotToDifferentDirectory</AssemblyTitle>
         <RootNamespace>SaveScreenshotToDifferentDirectory</RootNamespace>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -17,7 +19,6 @@
 
     <PropertyGroup Condition="'$(NeosPath)'==''">
         <NeosPath>$(MSBuildThisFileDirectory)NeosVR/</NeosPath>
-        <NeosPath Condition="Exists('/home/plyshka/Games/SteamLibrary/steamapps/common/NeosVR/')">/home/plyshka/Games/SteamLibrary/steamapps/common/NeosVR/</NeosPath>
         <NeosPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\NeosVR\')">C:\Program Files (x86)\Steam\steamapps\common\NeosVR\</NeosPath>
         <NeosPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/NeosVR/')">$(HOME)/.steam/steam/steamapps/common/NeosVR/</NeosPath>
     </PropertyGroup>
