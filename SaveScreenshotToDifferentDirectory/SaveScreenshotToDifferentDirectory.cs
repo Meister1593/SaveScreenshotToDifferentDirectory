@@ -50,58 +50,5 @@ namespace SaveScreenshotToDifferentDirectory
                 File.Copy(pchFilename, screenshotPath);
             }
         }
-
-        [HarmonyPatch(typeof(PhotoCaptureManager))]
-        [HarmonyPatch("TakePhoto")]
-        public static class PhotoCaptureManager_TakePhoto_Patch
-        {
-            private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-            {
-                var foundMassUsageMethod = false;
-                var startIndex = -1;
-                var endIndex = -1;
-
-                var codes = new List<CodeInstruction>(instructions);
-                for (var i = 0; i < codes.Count; i++)
-                {
-                    if (codes[i].opcode == OpCodes.Ldarg_0)
-                    {
-                        if (foundMassUsageMethod)
-                        {
-                            Msg("END " + i);
-
-                            endIndex = i; // include current 'ret'
-                            break;
-                        }
-
-                        Msg("START " + (i + 1));
-
-                        startIndex = i + 1; // exclude current 'call'
-
-                        for (var j = startIndex; j < codes.Count; j++)
-                        {
-                            if (codes[j].opcode == OpCodes.Call)
-                                break;
-                            var strOperand = (codes[j].operand as MethodInfo)?.Name;
-                            if (strOperand == "PlayCaptureSound")
-                            {
-                                foundMassUsageMethod = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if (startIndex > -1 && endIndex > -1)
-                {
-                    // we cannot remove the first code of our range since some jump actually jumps to
-                    // it, so we replace it with a no-op instead of fixing that jump (easier).
-                    codes[startIndex].opcode = OpCodes.Nop;
-                    codes.RemoveRange(startIndex + 1, endIndex - startIndex - 1);
-                }
-
-                return codes.AsEnumerable();
-            }
-        }
     }
 }
